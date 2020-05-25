@@ -33,7 +33,7 @@ module Githooks
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-    g.test_framework :rspec,
+    config.test_framework :rspec,
       fixtures: false,
       view_specs: false,
       helper_specs: false,
