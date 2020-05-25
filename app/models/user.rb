@@ -4,4 +4,5 @@ class User < ApplicationRecord
   validates :external_id, presence: true, uniqueness: true
 
   has_many :releases
+  has_many :commits
 end

@@ -16,5 +16,6 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of(:email).scoped_to(:external_id) }
 
     it { should have_many(:releases) }
+    it { should have_many(:commits) }
   end
 end
