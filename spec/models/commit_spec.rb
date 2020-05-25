@@ -9,6 +9,8 @@ RSpec.describe Commit, type: :model do
     it { should validate_presence_of(:message) }
     it { should validate_presence_of(:committed_at) }
     it { should validate_presence_of(:sha) }
+    it { should validate_presence_of(:repository_name) }
+    it { should validate_presence_of(:ticket_identifiers) }
 
     it { should belong_to(:user) }
     it { should belong_to(:release) }
