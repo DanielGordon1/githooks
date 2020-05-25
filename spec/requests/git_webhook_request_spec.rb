@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'GitWebhooks', type: :request do
-  describe 'post /create' do
+  describe 'POST#create' do
     it 'returns http success' do
-      get '/git_webhook/create'
+      post '/githook'
+
       expect(response).to have_http_status(:success)
     end
   end
