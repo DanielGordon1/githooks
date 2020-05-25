@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    name { "MyString" }
-    email { "MyString" }
-    external_id { "MyString" }
+    name { "Dave Bananas" }
+    email { "example@email.com" }
+    external_id { 12345678 }
   end
 end
