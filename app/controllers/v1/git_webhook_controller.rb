@@ -4,6 +4,8 @@
 module V1
   class GitWebhookController < ApplicationController
     def create
+      # call GitWebhookStorageService to store information.
+      # call IssueTrackerNotifierService to pass information onwards
       byebug
     end
   end
