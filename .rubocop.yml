@@ -11,7 +11,7 @@ AllCops:
     - 'db/**/*.rb'
     - 'spec/**helper.rb'
     - 'spec/factories/**'
-    - 'app/**/*.rb'
+    - 'app/channels/**/*.rb'
     - 'Gemfile'
     - 'Rakefile'
     - 'config.ru'
