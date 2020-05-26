@@ -12,7 +12,7 @@ RSpec.describe 'GitWebhooks', type: :request do
     it 'returns http success' do
       expect(service).to receive(:new)
 
-      headers = { "CONTENT-TYPE" => "application/json" }
+      headers = { 'CONTENT-TYPE' => 'application/json' }
       post '/v1/github', params: push_payload, headers: headers
 
       expect(response).to have_http_status(:success)
