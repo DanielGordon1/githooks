@@ -14,8 +14,6 @@ module V1
 
     def valid_url?
       request.referrer.to_s =~ Regexp.new('https://www.github.com')
-
-      true
     end
 
     def authenticate_request
@@ -23,7 +21,7 @@ module V1
     end
 
     def webhook_data
-      # Security issue, but lets depend on our solid authentication for now
+      # Security issue, but lets depend on our "solid" authentication for now
       params.require(:github_webhook).permit!
     end
   end
