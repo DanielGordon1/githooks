@@ -6,7 +6,7 @@ module V1
     before_action :authenticate_request
 
     def create
-      GithubWebhookStorageService.new(webhook_data: params).call
+      GithubWebhookStorageService.new(webhook_data: webhook_data.to_h).call
       # call IssueTrackerNotifierService to pass information onwards
     end
 
