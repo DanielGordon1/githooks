@@ -20,7 +20,9 @@ RSpec.describe GithubWebhookStorageService, type: :service do
       end
 
       it 'should store commit objects correctly' do
-
+        expect(Commit.count).to eq(0)
+        pull_service.call
+        expect(Commit.count).to eq(2)
       end
     end
 
