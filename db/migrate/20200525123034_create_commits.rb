@@ -7,7 +7,7 @@ class CreateCommits < ActiveRecord::Migration[6.0]
       t.jsonb :ticket_identifiers, default: {}
       t.string :repository_name
       t.references :user, null: false, foreign_key: true
-      t.references :release, null: false, foreign_key: true
+      t.references :release, foreign_key: true
 
       t.timestamps
     end

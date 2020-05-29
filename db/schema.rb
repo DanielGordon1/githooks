@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_123034) do
     t.jsonb "ticket_identifiers", default: {}
     t.string "repository_name"
     t.bigint "user_id", null: false
-    t.bigint "release_id", null: false
+    t.bigint "release_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["release_id"], name: "index_commits_on_release_id"
