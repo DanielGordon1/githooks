@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'GithubWebhooks', type: :request do
+  let(:push_payload) { file_fixture('push.json').read }
   let(:service) do
     service = double('GithubWebhookStorageService')
     expect(service).to receive(:call)
