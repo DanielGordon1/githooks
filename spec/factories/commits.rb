@@ -9,7 +9,7 @@ FactoryBot.define do
         sp: ['421']
       }
     end
-    user { association(:user) }
+    author { association(:user) }
     release { association(:release) }
   end
 end

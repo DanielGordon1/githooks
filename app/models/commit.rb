@@ -5,6 +5,6 @@ class Commit < ApplicationRecord
             :repository_name, presence: true
   validates :sha, uniqueness: true
 
-  belongs_to :user
-  belongs_to :release
+  belongs_to :author, class_name: 'User', foreign_key: :user_id
+  belongs_to :release, optional: true
 end
