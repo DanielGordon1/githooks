@@ -9,8 +9,7 @@
       "name": "paul",
       "email": "paul@suitepad.de"
     },
-    "commits": [
-      {
+    "commits": [{
         "sha": "78c4ef902de35c95a6b403c3f5c2e536cfbaab2e",
         "message": "CHORE: Cleaner logging output\n\nRef: #happ-1224",
         "date": "2018-05-24T16:00:49Z",
@@ -30,7 +29,7 @@
           "email": "mario@suitepad.de"
         }
       }
-    ],
+    ]
   },
   "repository": {
     "id": 135493233,
