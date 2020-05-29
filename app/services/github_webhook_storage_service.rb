@@ -5,14 +5,44 @@
 class GithubWebhookStorageService
   def initialize(webhook_data:)
     @data = webhook_data
+    @keys = @data.keys
   end
 
   def call
-    binding.pry
-    # @data
-    # transform data to
-    # {}
-    #
-    #
+    handler = select_handler
+
+    send("handle_#{handler}")
   end
+
+  private
+
+  def build_commit
+
+  end
+
+  def select_handler
+    return 'push' unless @keys.include?('action')
+
+    case @data['action']
+    when 'released'
+      'release'
+    else
+      'pull_request'
+    end
+  end
+
+  def handle_pull_request
+
+  end
+
+  def handle_push
+
+  end
+
+  def handle_release
+
+  end
+
+
+
 end
