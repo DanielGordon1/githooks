@@ -6,4 +6,13 @@ class GithubWebhookStorageService
   def initialize(webhook_data:)
     @data = webhook_data
   end
+
+  def call
+    binding.pry
+    # @data
+    # transform data to
+    # {}
+    #
+    #
+  end
 end
