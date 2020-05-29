@@ -39,7 +39,7 @@ class GithubWebhookStorageService
   end
 
   def build_ticket_ids(string)
-    tickets = string.match(/#\w{1,3}-\d{1,4}/).to_a
+    tickets = string.match(/#\w{1,4}-\d{1,4}/).to_a
     tickets.reduce({}) do |hash, ticket|
       project, id = ticket.gsub('#', '').split('-')
       hash[project] = id
@@ -60,6 +60,7 @@ class GithubWebhookStorageService
     # replace date key with committed_at
     attr_hash[:committed_at] = attr_hash.delete :date
     attr_hash[:ticket_identifiers] = build_ticket_ids(attr_hash[:message])
+
     attr_hash
   end
 
@@ -80,9 +81,12 @@ class GithubWebhookStorageService
   end
 
   def handle_push
+    @commit_hashes = @data['commits']
+    commits
   end
 
   def handle_release
+    @commit_hashes = @data['release']['commits']
+    commits
   end
-
 end
