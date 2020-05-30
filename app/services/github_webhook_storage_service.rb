@@ -28,7 +28,6 @@ class GithubWebhookStorageService
   end
 
   def find_or_build_commit(attr_hash)
-    # Return if commit already exists
     commit = Commit.find_by(sha: attr_hash[:sha])
     return commit if commit
 
@@ -39,11 +38,13 @@ class GithubWebhookStorageService
   end
 
   def build_ticket_ids(string)
-    tickets = string.match(/#\w{1,4}-\d{1,4}/).to_a
-    tickets.reduce({}) do |hash, ticket|
-      project, id = ticket.gsub('#', '').split('-')
-      hash[project] = id
-      hash
+    constructor = Hash.new { |h, k| h[k] = [] }
+    string.match(/#\w{1,4}-\d{1,4}/)
+          .to_a
+          .each_with_object(constructor) do |ticket, acc|
+      ticket.gsub('#', '')
+            .split('-')
+            .then { |result| acc[result[0]] << result[1] }
     end
   end
 
@@ -60,7 +61,6 @@ class GithubWebhookStorageService
     # replace date key with committed_at
     attr_hash[:committed_at] = attr_hash.delete :date
     attr_hash[:ticket_identifiers] = build_ticket_ids(attr_hash[:message])
-
     attr_hash
   end
 

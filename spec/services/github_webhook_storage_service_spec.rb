@@ -22,7 +22,9 @@ RSpec.describe GithubWebhookStorageService, type: :service do
       it 'should store commit objects correctly' do
         expect(Commit.count).to eq(0)
         pull_service.call
-        expect(Commit.count).to eq(2)
+        results = Commit.where("(ticket_identifiers->'sp') IS NOT NULL")
+        expect(results.count).to eq(2)
+        expect(results.first).to be_an_instance_of(Commit)
       end
     end
 
