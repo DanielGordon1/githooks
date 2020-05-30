@@ -72,7 +72,7 @@ RSpec.describe GithubWebhookStorageService, type: :service do
         results = Release.where(tag_name: '1.0.1')
         expect(results.count).to eq(1)
         expect(results.first).to be_an_instance_of(Release)
-        expect(result.first.commits.count).to eq(2)
+        expect(results.first.commits.count).to eq(2)
       end
     end
   end
