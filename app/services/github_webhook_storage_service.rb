@@ -20,6 +20,10 @@ class GithubWebhookStorageService
     @commits ||= build_commits
   end
 
+  def handling_release?
+    @release
+  end
+
   private
 
   def build_commits

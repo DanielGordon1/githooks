@@ -6,8 +6,11 @@ module V1
     before_action :authenticate_request
 
     def create
-      GithubWebhookStorageService.new(webhook_data: webhook_data.to_h).call
-      # call IssueTrackerNotifierService to pass information onwards
+      commits = storage_service.call
+      # IssueTrackerNotifierService.new(
+      #   commits: commits,
+      #   release: storage_service.handling_release?
+      # )
     end
 
     private
@@ -23,6 +26,10 @@ module V1
     def webhook_data
       # Security issue, but lets depend on our "solid" authentication for now
       params.require(:github_webhook).permit!
+    end
+
+    def storage_service
+      @storage_service ||= GithubWebhookStorageService.new(webhook_data: webhook_data.to_h)
     end
   end
 end
