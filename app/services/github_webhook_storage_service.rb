@@ -7,6 +7,7 @@ class GithubWebhookStorageService
     @data = webhook_data
     @keys = @data.keys
     @repository_name = @data['repository']['name']
+    @release = false
   end
 
   def call
@@ -42,7 +43,7 @@ class GithubWebhookStorageService
     commit = Commit.find_by(sha: attr_hash[:sha])
     return commit if commit
 
-    sanitized_attributes = sanitize_hash(attr_hash)
+    sanitized_attributes = sanitize_attributes(attr_hash)
 
     Commit.create(sanitized_attributes
           .merge(repository_name: @repository_name))
@@ -56,12 +57,22 @@ class GithubWebhookStorageService
     )
   end
 
-  def sanitize_hash(attr_hash)
+  def find_or_build_release
+    Release.find_or_create_by(
+      external_id: @data['release']['id'],
+      tag_name: @data['release']['tag_name'],
+      released_at: @data['released_at'],
+      author: find_or_build_user(@data['release']['author'])
+    )
+  end
+
+  def sanitize_attributes(attr_hash)
     attr_hash.deep_symbolize_keys!
 
     attr_hash[:author] = find_or_build_user(attr_hash[:author])
     attr_hash[:committed_at] = attr_hash.delete :date
     attr_hash[:ticket_identifiers] = build_ticket_ids(attr_hash[:message])
+    attr_hash[:release] = find_or_build_release if @release
 
     attr_hash
   end
@@ -89,6 +100,7 @@ class GithubWebhookStorageService
 
   def handle_release
     @commit_hashes = @data['release']['commits']
+    @release = true
     commits
   end
 end
