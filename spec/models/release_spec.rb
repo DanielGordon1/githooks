@@ -13,6 +13,6 @@ RSpec.describe Release, type: :model do
 
     it { should validate_uniqueness_of(:tag_name).scoped_to(:external_id) }
 
-    it { should belong_to(:user) }
+    it { should belong_to(:author) }
   end
 end

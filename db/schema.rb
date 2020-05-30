@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_123034) do
     t.string "tag_name"
     t.datetime "released_at"
     t.integer "external_id"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_releases_on_user_id"
