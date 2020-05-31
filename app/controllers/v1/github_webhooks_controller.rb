@@ -10,7 +10,7 @@ module V1
       IssueTrackerNotifierService.new(
         commits: commits,
         release: storage_service.handling_release?
-      )
+      ).call
     end
 
     private
