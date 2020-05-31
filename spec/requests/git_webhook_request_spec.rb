@@ -7,6 +7,7 @@ RSpec.describe 'GithubWebhooks', type: :request do
   let(:service) do
     service = double('GithubWebhookStorageService')
     expect(service).to receive(:call)
+    expect(service).to receive(:handling_release?)
     service
   end
 

@@ -9,6 +9,26 @@ RSpec.describe GithubWebhookStorageService, type: :service do
   let(:pull_request_payload) { JSON.parse(file_fixture('pull_request.json').read) }
   let(:release_payload) { JSON.parse(file_fixture('release.json').read) }
 
+  describe '#handling_release?' do
+    context 'with webhook data related to a release' do
+      it 'should return true' do
+        instance = service.new(webhook_data: release_payload)
+        instance.call
+
+        expect(instance.handling_release?).to eq(true)
+      end
+    end
+
+    context 'with webhook data not related to a release' do
+      it 'should return false' do
+        instance = service.new(webhook_data: pull_request_payload)
+        instance.call
+
+        expect(instance.handling_release?).to eq(false)
+      end
+    end
+  end
+
   describe '#call' do
     context 'with webhook data relating to a PullRequest' do
       let(:pull_service) { service.new(webhook_data: pull_request_payload) }
