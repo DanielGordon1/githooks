@@ -10,7 +10,7 @@ class Commit < ApplicationRecord
 
   def notification_format
     {
-      query: 'state - ready for release',
+      query: "state - #{released? ? 'released' : 'ready for release'}",
       issues: unique_tickets.map { |id| { id: id } },
       comment: "See SHA #{sha}"
     }
@@ -18,5 +18,9 @@ class Commit < ApplicationRecord
 
   def unique_tickets
     ticket_identifiers.map { |k, v| v.map { |n| "#{k}-#{n}" } }.flatten
+  end
+
+  def released?
+    !release.nil?
   end
 end

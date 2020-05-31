@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Commit, type: :model do
-  let(:commit) { build(:commit) }
+  let(:commit) { build(:commit, release: nil) }
   let(:required_format) do
     {
       query: 'state - ready for release',

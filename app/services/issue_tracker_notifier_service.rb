@@ -2,18 +2,14 @@
 
 # This service will notify a the issue tracking system by means of an HTTP req
 class IssueTrackerNotifierService
-  def initialize(commits:, release: false)
+  def initialize(commits:)
     @commits = commits
-    @release = release
     @url = 'https://webhook.site/0d97a487-cd54-40e1-905a-052d344eb59a'
   end
 
   def call
-    if @release
-
-    else
-      @commits.each { |commit| send_notification(commit.notification_format) }
-    end
+    @commits.map(&:notification_format)
+            .then { |body| send_notification(body) }
   end
 
   private

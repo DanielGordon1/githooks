@@ -8,8 +8,7 @@ module V1
     def create
       commits = storage_service.call
       IssueTrackerNotifierService.new(
-        commits: commits,
-        release: storage_service.handling_release?
+        commits: commits
       ).call
     end
 
