@@ -46,7 +46,24 @@ RSpec.describe Commit, type: :model do
   end
 
   describe '#update_released_status' do
-    it 'updates the released attribute' do
+    context 'with a release attached' do
+      it 'updates the released attribute' do
+        instance = commit
+        expect(instance.released?).to eq(false)
+
+        instance.release = create(:release)
+        instance.send(:update_released_status)
+
+        expect(instance.released?).to eq(true)
+      end
+      it 'updates the released attribute' do
+        instance = commit
+        expect(instance.released?).to eq(false)
+
+        instance.send(:update_released_status)
+
+        expect(instance.released?).to eq(false)
+      end
     end
   end
 
