@@ -1,24 +1,15 @@
-# README
+# Githooks
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is built to receive webhooks from an online version control system,
+store them, and subsequently update a ticketing system.
 
-Things you may want to cover:
+Currently the online versioning vendor used is GitHub.
+As a mock ticketing system webhook.site has been used.
 
-* Ruby version
+To initialize the application:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Clone the repository using ```git clone```.
+- Run ```bundle exec bundle install``` to install necesarry depencies.
+- Run ```bundle exec rails db:setup && rails db:migrate``` to setup and configure a Database.
+- Run ```bundle exec rspec ``` to run the test suite
+- Run ```bundle exec rubocop```
