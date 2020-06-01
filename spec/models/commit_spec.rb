@@ -41,7 +41,6 @@ RSpec.describe Commit, type: :model do
       instance = commit
       instance.update(release: create(:release), author: create(:user))
       expect(instance.released?).to eq(true)
-      byebug
     end
   end
 
