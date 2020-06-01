@@ -11,5 +11,6 @@ FactoryBot.define do
     end
     author { association(:user) }
     release { association(:release) }
+    repository_name { "suitepad_apk" }
   end
 end

@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class Commit < ApplicationRecord
+  enum status: %w[unreleased released]
   validates :message, :sha, :committed_at, :ticket_identifiers,
             :repository_name, presence: true
   validates :sha, uniqueness: true
 
   belongs_to :author, class_name: 'User', foreign_key: :user_id
   belongs_to :release, optional: true
+
+  before_save :update_released_status, if: :will_save_change_to_release_id?
 
   def notification_format
     {
@@ -21,6 +24,12 @@ class Commit < ApplicationRecord
   end
 
   def released?
-    !release.nil?
+    status == 'released'
+  end
+
+  private
+
+  def update_released_status
+    self.status = release.nil? ? 'unreleased' : 'released'
   end
 end

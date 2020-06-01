@@ -26,9 +26,28 @@ RSpec.describe Commit, type: :model do
     it { should validate_presence_of(:sha) }
     it { should validate_presence_of(:repository_name) }
     it { should validate_presence_of(:ticket_identifiers) }
+    it { should define_enum_for(:status) }
 
     it { should belong_to(:author) }
     it { should belong_to(:release).optional }
+  end
+
+  describe '#released?' do
+    it 'should default to false' do
+      expect(commit.released?).to eq(false)
+    end
+
+    it 'returns true when a commit is linked to a release' do
+      instance = commit
+      instance.update(release: create(:release), author: create(:user))
+      expect(instance.released?).to eq(true)
+      byebug
+    end
+  end
+
+  describe '#update_released_status' do
+    it 'updates the released attribute' do
+    end
   end
 
   describe '#unique_tickets' do
