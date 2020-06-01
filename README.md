@@ -12,4 +12,4 @@ To initialize the application:
 - Run ```bundle exec bundle install``` to install necesarry depencies.
 - Run ```bundle exec rails db:setup && rails db:migrate``` to setup and configure a Database.
 - Run ```bundle exec rspec ``` to run the test suite
-- Run ```bundle exec rubocop```
+- Run ```bundle exec rubocop``` to run the ruby linter.

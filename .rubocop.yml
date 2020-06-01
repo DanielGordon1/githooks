@@ -3,6 +3,9 @@
 Style/Encoding:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
 AllCops:
   Exclude:
     - 'config/**/*.rb'

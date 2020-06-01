@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Definition of the Commit model
 class Commit < ApplicationRecord
   enum status: %w[unreleased released]
   validates :message, :sha, :committed_at, :ticket_identifiers,
