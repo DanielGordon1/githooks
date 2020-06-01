@@ -13,5 +13,4 @@ To initialize the application:
 - Run ```bundle exec rails db:setup && rails db:migrate``` to setup and configure a Database.
 - Run ```bundle exec rspec ``` to run the test suite
 - Run ```bundle exec rubocop``` to run the ruby linter.
-
-Please make sure to also create a .env file and store a ```webhook.site``` url under the key ```WEBHOOK_URL```
+- Please make sure to also create a .env file and store a ```webhook.site``` url under the key ```WEBHOOK_URL```
