@@ -6,6 +6,7 @@ class CreateCommits < ActiveRecord::Migration[6.0]
       t.datetime :committed_at
       t.jsonb :ticket_identifiers, default: {}
       t.string :repository_name
+      t.integer :status, default: 'unreleased'
       t.references :user, null: false, foreign_key: true
       t.references :release, foreign_key: true
 

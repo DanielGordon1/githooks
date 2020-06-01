@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_123034) do
     t.datetime "committed_at"
     t.jsonb "ticket_identifiers", default: {}
     t.string "repository_name"
+    t.integer "status"
     t.bigint "user_id", null: false
     t.bigint "release_id"
     t.datetime "created_at", precision: 6, null: false
