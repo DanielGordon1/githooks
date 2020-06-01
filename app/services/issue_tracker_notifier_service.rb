@@ -4,7 +4,7 @@
 class IssueTrackerNotifierService
   def initialize(commits:)
     @commits = commits
-    @url = 'https://webhook.site/0d97a487-cd54-40e1-905a-052d344eb59a'
+    @url = ENV['WEBHOOK_URL']
   end
 
   def call

@@ -3,7 +3,7 @@
 RSpec.describe IssueTrackerNotifierService do
   let(:commit) { build(:commit) }
   let(:service) { described_class }
-  let(:url) { 'https://webhook.site/0d97a487-cd54-40e1-905a-052d344eb59a' }
+  let(:url) { ENV['WEBHOOK_URL'] }
 
   describe '#call' do
     context 'with commits relating to a release' do
