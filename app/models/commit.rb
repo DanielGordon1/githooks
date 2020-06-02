@@ -24,10 +24,6 @@ class Commit < ApplicationRecord
     ticket_identifiers.map { |k, v| v.map { |n| "#{k}-#{n}" } }.flatten
   end
 
-  def released?
-    status == 'released'
-  end
-
   private
 
   def update_released_status
