@@ -26,7 +26,10 @@ RSpec.describe Commit, type: :model do
     it { should validate_presence_of(:sha) }
     it { should validate_presence_of(:repository_name) }
     it { should validate_presence_of(:ticket_identifiers) }
-    it { should define_enum_for(:status) }
+    it do
+      should define_enum_for(:status)
+        .with_values(%i[unreleased released])
+    end
 
     it { should belong_to(:author) }
     it { should belong_to(:release).optional }
